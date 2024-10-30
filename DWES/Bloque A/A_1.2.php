@@ -1,5 +1,6 @@
 <?php
 $name = 'Raul';
+$name = 'Roberto';
 $price = 2;
 ?>
 <!DOCTYPE html>
@@ -7,7 +8,7 @@ $price = 2;
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>A_1.1 RaulGL</title>
+    <title>A_1.2 RaulGL</title>
 </head>
 <body>
     <h1>The Candy Store</h1>
