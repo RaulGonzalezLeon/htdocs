@@ -8,6 +8,7 @@ $price = 2;
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>A_1.1 RaulGL</title>
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
     <h1>The Candy Store</h1>
