@@ -10,11 +10,21 @@ $product = 'GYM';
 $cost = 30;                   
 
 for ($i = 1; $i <= 12; $i++) {
-    $subtotal = $cost * $i;                 
-    $discount = ($subtotal / 100)  * ($i * 4); 
-    $totals[$i] = $subtotal - $discount;    
+    $subtotal = $cost * $i;
+
+    if ($i == 1) {
+        // Primer mes sin descuento
+        $discount = 0;
+    } else {
+        // Descuento del 30% a partir del segundo mes
+        $discount = $subtotal * 0.30;
+    }
+
+    $precio[$i] = $subtotal - $discount;
 }
 ?>
+
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -33,14 +43,14 @@ for ($i = 1; $i <= 12; $i++) {
         <th>Meses</th>
         <th>Precio</th>
     </tr>
-    <?php foreach ($totals as $quantity => $price) { ?>
+    <?php foreach ($precio as $meses => $precioMes) { ?>
     <tr>
         <td>
-            <?= $quantity ?>
-            mes<?= ($quantity === 1) ? '' : 'es'; ?>
+            <?= $meses ?>
+            mes<?= ($meses === 1) ? '' : 'es'; ?>
         </td>
         <td>
-            <?= $price ?>€
+            <?= $precioMes ?>€
         </td>
     </tr>
     <?php } ?>
