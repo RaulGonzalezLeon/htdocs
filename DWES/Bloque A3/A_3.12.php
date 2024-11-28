@@ -81,9 +81,9 @@ function calculate_tax(float $inventoryValue, float $taxRate): float {
                 <tr>
                     <!-- Mostramos los detalles del libro en cada columna -->
                     <td><?php echo ($book['title']); ?></td>
-                    <td><?php echo number_format($book['price'], 2); ?></td>
+                    <td><?php echo number_format($book['price'], 2); ?>€</td>
                     <td><?php echo $book['stock']; ?></td>
-                    <td><?php echo number_format($inventoryValue, 2); ?></td>
+                    <td><?php echo number_format($inventoryValue, 2); ?>€</td>
                     <td><?php echo number_format($tax, 2); ?></td>
                 </tr>
             <?php } ?>
