@@ -1,48 +1,48 @@
 <?php
 // Clase Vehicle
 class Vehicle {
-    public $make;
-    public $model;
-    public $licensePlate;
-    public $available;
+    public string $make;
+    public string $model;
+    public string $licensePlate;
+    public bool $available;
 
-    public function __construct($make, $model, $licensePlate, $available) {
+    public function __construct(string $make, string $model, string $licensePlate, bool $available) {
         $this->make = $make;
         $this->model = $model;
         $this->licensePlate = $licensePlate;
         $this->available = $available;
     }
 
-    public function getDetails() {
+    public function getDetails(): string {
         return "Marca: $this->make, Modelo: $this->model, Matrícula: $this->licensePlate, Disponible: " . ($this->available ? "Sí" : "No");
     }
 
-    public function isAvailable() {
+    public function isAvailable(): bool {
         return $this->available;
     }
 }
 
 // Clase Fleet
 class Fleet {
-    public $name;
-    public $vehicles = [];
+    public string $name;
+    public array $vehicles;
 
-    public function __construct($name, $vehicles = []) {
+    public function __construct(string $name, array $vehicles = []) {
         $this->name = $name;
         $this->vehicles = $vehicles;
     }
 
-    public function addVehicle($vehicle) {
+    public function addVehicle(Vehicle $vehicle): void {
         $this->vehicles[] = $vehicle;
     }
 
-    public function listVehicles() {
+    public function listVehicles(): void {
         foreach ($this->vehicles as $vehicle) {
             echo $vehicle->getDetails() . "<br>";
         }
     }
 
-    public function listAvailableVehicles() {
+    public function listAvailableVehicles(): void {
         foreach ($this->vehicles as $vehicle) {
             if ($vehicle->isAvailable()) {
                 echo $vehicle->getDetails() . "<br>";
