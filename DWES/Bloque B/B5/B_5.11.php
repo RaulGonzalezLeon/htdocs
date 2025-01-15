@@ -19,16 +19,15 @@ $redSocial = new redSocial();
 echo '<h2>Intereses Como Cadena</h2>';
 echo $redSocial->obtenerInteresesComoCadena();
 
-// Mostrar intereses con ID como lista
-echo '<h2>Intereses con ID</h2>';
-echo $redSocial->obtenerInteresesConIdComoLista();
-
 // Agregar nuevo interés
 $redSocial->agregarInteres('Deportes');
+$redSocial->agregarInteres('Cocina');
 
 // Mostrar intereses con números aleatorios
 echo '<h2>Intereses con Números Aleatorios</h2>';
 echo $redSocial->obtenerInteresesConNumerosAleatorios();
+
+
 ?>
 
 <?php include 'includes/footer.php'; ?>
