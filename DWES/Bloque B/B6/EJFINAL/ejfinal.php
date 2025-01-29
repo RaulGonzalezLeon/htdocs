@@ -1,5 +1,11 @@
 <?php
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Declarar patrones y restricciones
+    $pattern_nombre = "/^[A-Za-zÁÉÍÓÚáéíóúÑñ ]+$/";
+    $minlength_nombre = 2;
+    $maxlength_nombre = 50;
+    $pattern_telefono = "/^\d{9,}$/";
+
     // Validar y sanear los datos
     $nombre = filter_input(INPUT_POST, 'nombre', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
     $correo = filter_input(INPUT_POST, 'correo', FILTER_SANITIZE_EMAIL);
@@ -10,15 +16,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Mensajes de error
     $errores = [];
 
-    if (!$nombre || strlen($nombre) < 2 || strlen($nombre) > 50) {
-        $errores[] = "El nombre debe tener entre 2 y 50 caracteres y solo contener letras.";
+    if (!$nombre || !preg_match($pattern_nombre, $nombre) || strlen($nombre) < $minlength_nombre || strlen($nombre) > $maxlength_nombre) {
+        $errores[] = "El nombre debe tener entre $minlength_nombre y $maxlength_nombre caracteres y solo contener letras.";
     }
 
     if (!filter_var($correo, FILTER_VALIDATE_EMAIL)) {
         $errores[] = "El correo electrónico no es válido.";
     }
 
-    if (!$telefono || strlen($telefono) < 9) {
+    if (!$telefono || !preg_match($pattern_telefono, $telefono)) {
         $errores[] = "El teléfono debe contener al menos 9 dígitos.";
     }
 
@@ -30,7 +36,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $errores[] = "Debe aceptar los términos y condiciones.";
     }
 
-    // Mostrar errores o mensaje de éxito
+    // Si no hay errores, mostrar mensaje de éxito
     if (empty($errores)) {
         echo "<h1>Registro exitoso</h1>";
         echo "<p>Nombre: " . htmlspecialchars($nombre) . "</p>";
@@ -38,12 +44,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "<p>Teléfono: " . htmlspecialchars($telefono) . "</p>";
         echo "<p>Tipo de evento: " . htmlspecialchars($tipo_evento) . "</p>";
         echo "<p>Gracias por registrarse.</p>";
-    } else {
-        echo "<h1>Errores encontrados:</h1><ul>";
-        foreach ($errores as $error) {
-            echo "<li>" . htmlspecialchars($error) . "</li>";
-        }
-        echo "</ul>";
+        exit; // Salir para evitar que se muestre nuevamente el formulario
     }
 }
 ?>
@@ -85,5 +86,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         <button type="submit">Registrarse</button>
     </form>
+    <?php
+    // Mostrar errores debajo del formulario
+    if (!empty($errores)) {
+        echo "<div style='color: red; margin-top: 20px;'><h2>Errores:</h2><ul>";
+        foreach ($errores as $error) {
+            echo "<li>" . htmlspecialchars($error) . "</li>";
+        }
+        echo "</ul></div>";
+    }
+    ?>
 </body>
 </html>
+
