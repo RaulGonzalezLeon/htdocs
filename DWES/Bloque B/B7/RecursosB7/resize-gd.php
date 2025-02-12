@@ -2,7 +2,7 @@
 $moved         = false;                                        // Initialize
 $message       = '';                                           // Initialize
 $error         = '';                                           // Initialize
-$upload_path   = 'uploads/';                                   // Upload path
+$upload_path   = 'imagenes/';                                   // Upload path
 $max_size      = 5242880;                                      // Max file size
 $allowed_types = ['image/jpeg', 'image/png', 'image/gif',];    // Allowed file types
 $allowed_exts  = ['jpeg', 'jpg', 'png', 'gif',];               // Allowed file extensions
