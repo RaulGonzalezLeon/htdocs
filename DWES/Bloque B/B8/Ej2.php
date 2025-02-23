@@ -1,12 +1,12 @@
 <?php
 $fecha_ingresada = '16/10/2024 15:30:00';
-$fecha_convertir = date_create_from_format('d/m/Y H:i:s', '16/10/2024 15:30:00');
+$fecha_convertir = date_create_from_format('d/m/Y H:i:s', $fecha_ingresada);
 $timestamp = $fecha_convertir->getTimestamp();
-$fecha_formateada = strftime('%e de %B de %Y, %H:%M', $timestamp);
-
+$fecha_formateada = $fecha_convertir->format('j \d\e F \d\e Y, H:i');
 ?>
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
